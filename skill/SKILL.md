@@ -32,11 +32,24 @@ Go to [Account > Business](https://business.brighty.app/account/business) and cl
 
 ### 3. Configure
 
+This skill includes `config/mcporter.json` which auto-registers the brighty MCP server. You just need to set the API key:
+
 ```bash
-mcporter call brighty.brighty_setup apiKey=YOUR_KEY
+# Add to your environment (e.g. ~/.openclaw/.env)
+BRIGHTY_API_KEY=your-api-key
+```
+
+Or configure manually:
+
+```bash
+mcporter config add brighty --command "npx -y github:Maay/brighty_mcp" --env BRIGHTY_API_KEY=your-api-key
 ```
 
 Check connection: `mcporter call brighty.brighty_status`
+
+**Security:**
+- Never store API key in SKILL.md, memory files, or chat history
+- Key lives only in env or `config/mcporter.json` (local, not pushed to git)
 
 ## Authorization Notice
 
