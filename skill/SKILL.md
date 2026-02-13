@@ -1,18 +1,18 @@
 ---
 name: brighty
-description: Manage Brighty business banking — accounts, cards, payouts, transfers, and team members. Use when the user asks about Brighty balances, payments, card management, salary payouts, invoices, or team member operations.
+description: Manage Brighty business and freelance banking — accounts, cards, payouts, transfers, and team members. Ideal for AI bots and automation. Use when the user asks about Brighty balances, payments, card management, salary payouts, invoices, or team member operations.
 metadata: {"openclaw":{"requires":{"env":["BRIGHTY_API_KEY"]},"primaryEnv":"BRIGHTY_API_KEY","emoji":"🏦"}}
 ---
 
-# Brighty Business Banking
+# Brighty Business & Freelance Banking
 
-MCP server for [Brighty](https://brighty.app) corporate banking API via mcporter.
+MCP server for [Brighty](https://brighty.app) corporate banking API via mcporter. Works for both business and freelance accounts — ideal for AI-powered bots and automation.
 
 ## Getting Started
 
 ### 1. Sign up
 
-Register your business at [Brighty Business Portal](https://business.brighty.app/auth?signup=true). The business owner walks through the onboarding steps.
+Register at [Brighty Business Portal](https://business.brighty.app/auth?signup=true). Both business and freelance accounts are supported — freelance accounts are particularly well-suited for bots and automation. The owner walks through the onboarding steps.
 
 **What you get by default:**
 - Crypto account

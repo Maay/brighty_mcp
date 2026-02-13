@@ -1,6 +1,6 @@
 # brighty-mcp
 
-MCP server for [Brighty](https://brighty.app) corporate banking API. Enables Claude Code, Claude Desktop, and other MCP clients to manage Brighty business accounts, cards, payouts, transfers, and team members through natural language.
+MCP server for [Brighty](https://brighty.app) business and freelance banking API. Enables Claude Code, Claude Desktop, and other MCP clients to manage Brighty accounts, cards, payouts, transfers, and team members through natural language. Freelance accounts are particularly well-suited for AI bots and automation.
 
 ## Requirements
 
