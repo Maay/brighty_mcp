@@ -1,0 +1,47 @@
+{
+  "name": "brighty-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Brighty corporate banking API",
+  "main": "dist/index.js",
+  "bin": {
+    "brighty-mcp": "dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "brighty",
+    "banking",
+    "claude",
+    "anthropic"
+  ],
+  "author": "Maay",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maay/brighty_mcp.git"
+  },
+  "homepage": "https://github.com/Maay/brighty_mcp#readme",
+  "bugs": {
+    "url": "https://github.com/Maay/brighty_mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ]
+}
