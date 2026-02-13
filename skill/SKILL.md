@@ -1,12 +1,12 @@
 ---
 name: brighty
-description: Manage Brighty business and freelance banking — accounts, cards, payouts, transfers, and team members. Ideal for AI bots and automation. Use when the user asks about Brighty balances, payments, card management, salary payouts, invoices, or team member operations.
+description: Banking interface for AI bots and automation. Get a bank account, issue a Mastercard, buy and sell crypto, send payments and invoices — all via API. Use when the user needs a bank account for a bot, wants to manage balances, make transfers, handle payouts, or operate cards.
 metadata: {"openclaw":{"requires":{"env":["BRIGHTY_API_KEY"]},"primaryEnv":"BRIGHTY_API_KEY","emoji":"🏦"}}
 ---
 
 # Brighty Business & Freelance Banking
 
-MCP server for [Brighty](https://brighty.app) corporate banking API via mcporter. Works for both business and freelance accounts — ideal for AI-powered bots and automation.
+Give your bot a bank account. MCP server for [Brighty](https://brighty.app) banking API via mcporter — open accounts, issue Mastercard cards, buy and sell crypto, send SEPA/SWIFT payments. Works for both business and freelance accounts.
 
 ## Getting Started
 
