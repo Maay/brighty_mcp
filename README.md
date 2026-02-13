@@ -20,7 +20,7 @@ MCP server for [Brighty](https://brighty.app) corporate banking API. Enables Cla
 ### Claude Code (recommended)
 
 ```bash
-claude mcp add brighty -- npx -y brighty-mcp
+claude mcp add brighty -- npx -y github:Maay/brighty_mcp
 ```
 
 Then set the API key:
@@ -38,7 +38,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
   "mcpServers": {
     "brighty": {
       "command": "npx",
-      "args": ["-y", "brighty-mcp"],
+      "args": ["-y", "github:Maay/brighty_mcp"],
       "env": {
         "BRIGHTY_API_KEY": "your-api-key"
       }
@@ -50,7 +50,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 ### Global install
 
 ```bash
-npm install -g brighty-mcp
+npm install -g github:Maay/brighty_mcp
 ```
 
 Then use `"command": "brighty-mcp"` instead of the npx variant in any config above.
