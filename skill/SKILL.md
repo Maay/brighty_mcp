@@ -1,7 +1,7 @@
 ---
 name: brighty
 description: Banking interface for AI bots and automation. Get a bank account, issue a Mastercard, buy and sell crypto, send payments and invoices — all via API. Use when the user needs a bank account for a bot, wants to manage balances, make transfers, handle payouts, or operate cards.
-metadata: {"openclaw":{"requires":{"env":["BRIGHTY_API_KEY"]},"primaryEnv":"BRIGHTY_API_KEY","emoji":"🏦"}}
+metadata: {"openclaw":{"requires":{"env":["BRIGHTY_API_KEY"],"bins":["mcporter"]},"primaryEnv":"BRIGHTY_API_KEY","emoji":"🏦","homepage":"https://github.com/Maay/brighty_mcp"}}
 ---
 
 # Brighty Business & Freelance Banking
