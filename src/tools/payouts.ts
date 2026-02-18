@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { getClient } from "../client.js";
-import type { Payout, PayoutTransfer, Money } from "../types/brighty.js";
+import type { Payout, PayoutTransfer, Money, Account } from "../types/brighty.js";
 import { randomUUID } from "crypto";
 
 export const payoutTools = {
@@ -73,6 +73,14 @@ export const payoutTools = {
       currency: string;
       reference?: string;
     }) => {
+      const sourceAccount = await getClient().get<Account>(`/business/v1/accounts/${input.sourceAccountId}`);
+      const accountCurrency = sourceAccount.balance.currency;
+      if (accountCurrency !== input.currency) {
+        throw new Error(
+          `Source account "${sourceAccount.name}" is a ${accountCurrency} account, but transfer currency is ${input.currency}. Use a ${input.currency} account as source.`
+        );
+      }
+
       const body: Record<string, unknown> = {
         sourceAccountId: input.sourceAccountId,
         amount: { amount: input.amount, currency: input.currency } as Money,
