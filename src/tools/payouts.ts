@@ -39,13 +39,59 @@ export const payoutTools = {
   },
 
   brighty_start_payout: {
-    description: "Start processing a payout - initiates all transfers.",
+    description: "Start processing a payout - initiates all transfers. Pre-validates source account balances before starting.",
     inputSchema: z.object({
       id: z.string().uuid().describe("Payout ID to start"),
       createdAt: z.string().optional().describe("Payout creation date (ISO 8601) - required by API"),
     }),
     handler: async (input: { id: string; createdAt?: string }) => {
       const params = input.createdAt ? `?createdAt=${encodeURIComponent(input.createdAt)}` : "";
+
+      // Pre-flight: fetch payout transfers and validate source account balances
+      try {
+        const raw = await getClient().get<Record<string, unknown>>(
+          `/business/v1/payouts/${input.id}/transfers${params}`
+        );
+        const transfers = (Array.isArray(raw) ? raw : Array.isArray((raw as Record<string, unknown>).transfers) ? (raw as Record<string, unknown>).transfers : []) as Array<Record<string, unknown>>;
+
+        // Group required amounts by source account
+        const required = new Map<string, { currency: string; total: number }>();
+        for (const t of transfers) {
+          const srcId = t.sourceAccountId as string | undefined;
+          const amt = t.amount as Money | undefined;
+          if (!srcId || !amt) continue;
+          const amount = parseFloat(amt.amount);
+          if (isNaN(amount) || amount <= 0) continue;
+          const existing = required.get(srcId);
+          if (existing) {
+            existing.total += amount;
+          } else {
+            required.set(srcId, { currency: amt.currency, total: amount });
+          }
+        }
+
+        // Check each source account balance
+        const errors: string[] = [];
+        for (const [accountId, { currency, total }] of required) {
+          const account = await getClient().get<Account>(`/business/v1/accounts/${accountId}`);
+          const available = parseFloat(account.balance.amount);
+          if (available < total) {
+            errors.push(
+              `Account "${account.name}" (${currency}): needs ${total} ${currency}, has ${available} ${currency}`
+            );
+          }
+        }
+
+        if (errors.length > 0) {
+          throw new Error(
+            `Insufficient balance to start payout:\n${errors.join("\n")}\n\nTop up the source account(s) before starting.`
+          );
+        }
+      } catch (e) {
+        // Re-throw balance errors; swallow API/parsing errors so the check is best-effort
+        if (e instanceof Error && e.message.startsWith("Insufficient balance")) throw e;
+      }
+
       const payout = await getClient().post<Payout>(`/business/v1/payouts/${input.id}/start${params}`);
       return { payout };
     },

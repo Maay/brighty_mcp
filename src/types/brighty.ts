@@ -37,6 +37,7 @@ export interface PayoutTransfer {
   payoutId: string;
   type: "INTERNAL" | "EXTERNAL";
   state: string;
+  sourceAccountId?: string;
   amount: Money;
   recipient: {
     name?: string;
